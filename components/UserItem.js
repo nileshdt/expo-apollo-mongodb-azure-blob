@@ -4,8 +4,8 @@ function UserItem(props) {
     return (
         <View  style={styles.userItem}>
         <Text style={styles.userText} > {props.text}</Text> 
-      </View>)
-    ;
+      </View>
+      );
 
 }
 export default UserItem; 
