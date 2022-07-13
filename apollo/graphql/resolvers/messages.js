@@ -3,7 +3,6 @@ const Message = require('../../models/Message');
 const transformMessage = m => {
   return new Message({
     ...m._doc,
-    _id: m.id,
     text: m.text,
     createdBy: m.createdBy,
     createdAt: m.createdAt
@@ -11,8 +10,10 @@ const transformMessage = m => {
 };
 module.exports = {
     Mutation: {
-        async createMessage(_, {messageInput: {text, username} }) {
+        async createMessage(_, {messageInput: {name, type, text, username} }) {
             const newMessage = new Message({
+                name: name,
+                type: type,
                 text: text,
                 createdBy: username,
                 createdAt: new Date().toISOString()

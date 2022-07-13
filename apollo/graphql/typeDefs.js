@@ -2,13 +2,17 @@ const { gql } = require('apollo-server');
 
 module.exports = gql`
 type Message {
-    _id: ID!
+    id: ID
+    name: String
+    type: String
     text: String
     createdAt: String
     createdBy: String
 }
 
 input MessageInput {
+    name: String
+    type: String
     text: String
     username: String
 }

@@ -1,7 +1,8 @@
 const { model, Schema } = require('mongoose');
 
 const messageSchema = new Schema({
-    _id: String,
+    name: String,
+    type: String,
     text: String,
     createdAt: String,
     createdBy: String

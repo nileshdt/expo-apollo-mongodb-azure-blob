@@ -4,28 +4,14 @@ import  UserItem  from './components/UserItem';
 import UserInput  from './components/UserInput';
 import { ApolloClient, InMemoryCache, ApolloProvider, gql } from '@apollo/client';
 import DisplayMessages from './components/DisplayMessages';
+import MessageInput from './components/MessageInput';
+import ImageUploader from './components/ImageUploader';
 
 export default function App() {
   const client = new ApolloClient({
     uri: 'http://192.168.0.20:5000/graphql',
     cache: new InMemoryCache(),
   });
-  // const client = ...
-console.log('client');
-client
-.query({
-  query: gql`
-    query messages {
-      messages {
-        _id
-        text
-        createdAt
-        createdBy
-      }
-    }
-  `,
-})
-.then((result) => console.log(result));
   const [users, setUsers] = useState([]);
 
   function addUserHandler(enteredUserText) {
@@ -43,7 +29,7 @@ client
     <ApolloProvider client={client}>
     
     <View style={styles.appContainer}>
-      <UserInput onAddUser={addUserHandler}/>
+      {/* <UserInput onAddUser={addUserHandler}/>
 
       <View style={styles.userContainer}>
       <FlatList data={users} renderItem={(itemData) => {
@@ -57,10 +43,13 @@ client
       }
       alwaysBounceVertical={false}>
       </FlatList>
-      </View>
+      </View> */}
       <View>
-        <DisplayMessages/>
+        <MessageInput /> 
+        <DisplayMessages/> 
+        <ImageUploader/>
       </View>
+      
     </View>
     </ApolloProvider>
   );
