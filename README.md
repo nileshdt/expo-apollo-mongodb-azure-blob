@@ -7,7 +7,7 @@ cd expo3/apollo
 
 npm install
 
-update nodemon.json
+update the nodemon.json with your details
 
 nodemon index.js
 
