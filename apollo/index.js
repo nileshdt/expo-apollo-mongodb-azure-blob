@@ -1,12 +1,10 @@
-const { ApolloServer }  = require('apollo-server');
+const { ApolloServer}  = require('apollo-server');
 const mongoose = require('mongoose');
 
 const typeDefs = require('./graphql/typeDefs');
 const resolvers = require('./graphql/resolvers');
 const MONGODB = `mongodb+srv://admin1:${process.env.MONGO_PASSWORD}@cluster0.rmar3.mongodb.net/message-dev?retryWrites=true&w=majority`;
 
-
-//const MONGODB = "mongodb+srv://admin:coopercodes@apolloserversetup.n9ghj.mongodb.net/myFirstDatabase?retryWrites=true&w=majority";
 
 const server = new ApolloServer({
     typeDefs,

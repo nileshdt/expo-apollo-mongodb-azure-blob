@@ -9,7 +9,11 @@ type Message {
     createdAt: String
     createdBy: String
 }
-
+type File {
+    filename: String!
+    mimetype: String!
+    encoding: String!
+}
 input MessageInput {
     name: String
     type: String
