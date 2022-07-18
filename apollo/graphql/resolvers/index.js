@@ -4,7 +4,7 @@ const fileResolvers = require('./file');
 module.exports = {
     Query: {
         ...messagesResolvers.Query
-        //...fileResolvers.Query
+       // ...fileResolvers.Query
         
     },
     Mutation: {

@@ -5,7 +5,6 @@ const typeDefs = require('./graphql/typeDefs');
 const resolvers = require('./graphql/resolvers');
 const MONGODB = `mongodb+srv://admin1:${process.env.MONGO_PASSWORD}@cluster0.rmar3.mongodb.net/message-dev?retryWrites=true&w=majority`;
 
-
 const server = new ApolloServer({
     typeDefs,
     resolvers

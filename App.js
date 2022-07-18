@@ -6,10 +6,10 @@ import { ApolloClient, InMemoryCache, ApolloProvider, gql } from '@apollo/client
 import DisplayMessages from './components/DisplayMessages';
 import MessageInput from './components/MessageInput';
 import ImageUploader from './components/ImageUploader';
-
+//'http://192.168.0.20:5000/graphql',
 export default function App() {
   const client = new ApolloClient({
-    uri: 'http://192.168.0.20:5000/graphql',
+    uri: `${process.env.GRAPHQL_URI}` ,
     cache: new InMemoryCache(),
   });
   const [users, setUsers] = useState([]);
