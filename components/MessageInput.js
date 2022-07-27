@@ -37,7 +37,6 @@ function MessageInput(props){
         setEnteredTypeText(text);
       };
       function addMessageHandler(){
-        //props.onAddMessage(enteredMessageText);
         console.log(enteredNameText + enteredMessageText );
         createMessage({
           variables: {
@@ -45,23 +44,12 @@ function MessageInput(props){
               name: enteredNameText,
               type: enteredTypeText,
               text:  enteredMessageText,
-            username: "nilesh thin"
+              username: "nilesh thin"
     
             }
           },
         });
-        //if (loading) return <Text>Loading...</Text>;
-        //if (error) return <Text>Error :{error}</Text>;
-       
-        console.log("1"+ enteredMessageText );
-
-        // setMessages(currentMessages => [...currentMessages,
-        //   {
-        //    text : enteredMessageText,
-        //    id: Math.random().toString()
-        //  }]);
         setEnteredMessageText('');
-      console.log('message submit');
       }
 return (
     <View style={styles.inputContainer}>

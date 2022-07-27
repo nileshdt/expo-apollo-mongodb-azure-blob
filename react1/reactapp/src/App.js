@@ -5,28 +5,71 @@ import React,{Component} from 'react';
 class App extends Component {
 
 	state = {
-
-	// Initially, no file is selected
+		url: null,
+	// Initially, no file is s,elected
 	selectedFile: null
 	};
 	
 	// On file select (from the pop up)
 	onFileChange = event => {
-	
+	console.log('file chage')
 	// Update the state
 	this.setState({ selectedFile: event.target.files[0] });
 	
 	};
 	
 	// On file upload (click the upload button)
-	onFileUpload = () => {
+	onCallUrl =  () => {
+		
+console.log('test url')
+this.setState({ url: "test url"});
+
+			const xhr = new XMLHttpRequest();
+			try {
+			  console.log(1)
+			// listen for `onload` event
+			xhr.onload = () => {
+				// process response
+			  console.log(6)
+this.setState({ url: "onload url"});
+		  
+				if (xhr.status === 200) {
+this.setState({ url: JSON.parse(xhr.response)});
+
+					// parse JSON data
+					console.log(JSON.parse(xhr.response));
+				} else {
+					console.error('Error!');
+				}
+			};
+			
+			// create a `GET` request
+			xhr.open('GET', 'http://localhost:7001/url');
+			console.log(2)
+			
+			// send request
+			xhr.send();
+			console.log(3)
+this.setState({ url: "called url"});
+		  
+			}
+			catch( e){ 
+			  console.log(4)
+			  this.setState({ url: e});
+
+			  console.log(e)}
+		  
+	}
+
+
+		onFileUpload = () => {
 	
 	// Create an object of formData
 	const formData = new FormData();
 	
 	// Update the formData object
 	formData.append(
-		"myFile",
+		"file",
 		this.state.selectedFile,
 		this.state.selectedFile.name
 	);
@@ -59,6 +102,7 @@ class App extends Component {
 
 			
 <p>File Type: {this.state.selectedFile.type}</p>
+<p>File Type: {this.state.url}</p>
 
 			
 <p>
@@ -95,6 +139,8 @@ class App extends Component {
 				</button>
 			</div>
 		{this.fileData()}
+		<button onClick={this.onCallUrl}>Test URL</button>
+
 		</div>
 	);
 	}

@@ -4,6 +4,8 @@ const messageSchema = new Schema({
     name: String,
     type: String,
     text: String,
+    fileName: String,
+    address: String,
     createdAt: String,
     createdBy: String
 });

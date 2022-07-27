@@ -20,11 +20,10 @@ function DisplayMessages() {
    const [messages, setMessages] = useState([]);
 
     const { loading, error, data } = useQuery(GET_MESSAGES);
-  
+    // console.log("dis msg");
+    // console.log(data);
     if (loading) return <Text>Loading...</Text>;
     if (error) return <Text>Error :{error}</Text>;
-    console.log(2);
-    console.log(data);
     return data.messages.map(({  id, name, type, text, createdAt, createdBy }) => (
                 <Text key={id}>{name + " " + type +" " +text}</Text>
     ));

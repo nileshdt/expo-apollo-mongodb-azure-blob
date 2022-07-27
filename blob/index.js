@@ -9,21 +9,34 @@ async function main() {
     // Quick start code goes here
     const AZURE_STORAGE_CONNECTION_STRING =
   process.env.AZURE_STORAGE_CONNECTION_STRING;
-console.log(AZURE_STORAGE_CONNECTION_STRING);
+// console.log(AZURE_STORAGE_CONNECTION_STRING);
 if (!AZURE_STORAGE_CONNECTION_STRING) {
   throw Error("Azure Storage Connection string not found");
 }
-
+const AZURE_SAS = "https://devparentu.blob.core.windows.net/dev?st=2020-07-17T16%3A49%3A37Z&se=2035-07-18T16%3A49%3A00Z&sp=racwdl&sv=2018-03-28&sr=c&sig=UQoZRxrJWCIaNiyBhgsjkm9WtmHosJAOh451mqmnj%2Fg%3D";
+const AZ ="https://devparentu.blob.core.windows.net:443/dev?st=2020-07-17T16%3A49%3A37Z&se=2035-07-18T16%3A49%3A00Z&sp=racwdl&sv=2018-03-28&sr=c&sig=UQoZRxrJWCIaNiyBhgsjkm9WtmHosJAOh451mqmnj%2Fg%3D"
 //Create the BlobServiceClient object which will be used to create a container client
-const blobServiceClient = BlobServiceClient.fromConnectionString(
-    AZURE_STORAGE_CONNECTION_STRING
-  );
+ console.log(AZURE_SAS);
 
-//const blobClient = new BlobClient(AZURE_STORAGE_CONNECTION_STRING, null);
-//blobClient.GetPropertiesAsync();
+  // const blobServiceClient = BlobServiceClient.fromConnectionString(
+  //   AZURE_STORAGE_CONNECTION_STRING
+  // );
 
-// const blobServiceClient =
-//         blobClient.GetParentBlobContainerClient().GetParentBlobServiceClient();
+  const { BlobServiceClient } = require("@azure/storage-blob");
+
+const account = "devparentu";
+const sas = "?st=2020-07-17T16%3A49%3A37Z&se=2035-07-18T16%3A49%3A00Z&sp=racwdl&sv=2018-03-28&sr=c&sig=UQoZRxrJWCIaNiyBhgsjkm9WtmHosJAOh451mqmnj%2Fg%3D";
+
+const blobServiceClient = new BlobServiceClient(`https://${account}.blob.core.windows.net${sas}`);
+console.log(`https://${account}.blob.core.windows.net/dev${sas}`)
+
+  // const blobClient =  new BlobClient(AZ, null);
+  // blobClient.GetPropertiesAsync();
+// const blobClient = new BlobClient(AZ, null);
+// blobClient.GetPropertiesAsync();
+
+//  const blobServiceClient =
+//          blobClient.GetParentBlobContainerClient().GetParentBlobServiceClient();
 
 // const blobServiceClient = new BlobServiceClient(
 //     AZURE_STORAGE_CONNECTION_STRING
@@ -33,18 +46,20 @@ const blobServiceClient = BlobServiceClient.fromConnectionString(
   
   console.log("\nCreating container...");
   console.log("\t", containerName);
-  
+  console.log("\t", blobServiceClient.url);
   // Get a reference to a container
-  const containerClient = blobServiceClient.getContainerClient(containerName);
+  const containerClient = blobServiceClient.getContainerClient("dev/parentu_videos");
+
+  console.log("\t", containerClient.containerName);
   // Create the container
-  const createContainerResponse = await containerClient.create();
-  console.log(
-    "Container was created successfully. requestId: ",
-    createContainerResponse.requestId
-  );
+  // const createContainerResponse = await containerClient.create();
+  // console.log(
+  //   "Container was created successfully. requestId: ",
+  //   createContainerResponse.requestId
+  // );
 
   // Create a unique name for the blob
-const blobName = "quickstart" + uuidv1() + ".txt";
+const blobName = "safety" + uuidv1() + ".txt";
 
 // Get a block blob client
 const blockBlobClient = containerClient.getBlockBlobClient(blobName);
@@ -61,9 +76,9 @@ console.log(
 console.log("\nListing blobs...");
 
 // List the blob(s) in the container.
-for await (const blob of containerClient.listBlobsFlat()) {
-  console.log("\t", blob.name);
-}
+// for await (const blob of containerClient.listBlobsFlat()) {
+//   console.log("\t", blob.name);
+// }
 
 // Get blob content from position 0 to the end
 // In Node.js, get downloaded data by accessing downloadBlockBlobResponse.readableStreamBody
@@ -75,9 +90,10 @@ console.log(
   await streamToText(downloadBlockBlobResponse.readableStreamBody)
 );
 //Delete container
+console.log("\nDeleting file...");
 console.log("\nDeleting container...");
-
-const deleteContainerResponse = await containerClient.delete();
+const deleteContainerResponse= await blockBlobClient.delete();
+// const deleteContainerResponse = await containerClient.delete();
 console.log(
   "Container was deleted successfully. requestId: ",
   deleteContainerResponse.requestId

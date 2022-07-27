@@ -6,6 +6,8 @@ type Message {
     name: String
     type: String
     text: String
+    fileName: String
+    address: String
     createdAt: String
     createdBy: String
 }
@@ -20,6 +22,8 @@ input MessageInput {
     name: String
     type: String
     text: String
+    fileName: String
+    address: String
     username: String
 }
 scalar Upload
