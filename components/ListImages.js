@@ -38,11 +38,12 @@ function ListImages() {
       <View style={{ flex: 1}}>
         <FlatList 
         data={data.messages}
-        numColumns= {3}
+        numColumns= {1}
         keyExtractor={(_, index) => index}
         initialNumToRender={data.messages.length}
         renderItem={({ item, _ }) => {
           return( 
+            // <Text>{get_images_url(item.fileName)}</Text>
             <Image 
               style={{height:100, width:100,
                borderRadius:4, margin:5, borderBottomWidth:2

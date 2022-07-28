@@ -5,6 +5,7 @@ import ImageUploader from './components/ImageUploader';
 import ListImages from './components/ListImages';
 import getEnvVars from './environment';
 const { apolloUrl } = getEnvVars();
+
 console.log(apolloUrl)
 export default function App() {
   const client = new ApolloClient({

@@ -12,8 +12,8 @@ const localhost =
 const ENV = {
  dev: {
    apiUrl: localhost,
-   apolloUrl: "http://192.168.4.53:5000/graphql",
-   azureBlobUrl: "http://192.168.4.53:7001/blobupload",
+   apolloUrl: "http://<your-ip>:5000/graphql",
+   azureBlobUrl: "http://<your-ip>:7001/blobupload",
    amplitudeApiKey: null,
  },
  staging: {
