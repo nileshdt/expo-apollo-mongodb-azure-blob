@@ -23,7 +23,8 @@ function ListImages() {
      console.log("d msg");
      console.log(data);
 
-    //  if (data) return <Text>error...</Text>;
+     if (data && data.messages.length === 0) return <Text>No records...</Text>;
+     if (!data) return <Text>Cannot connect to DB...</Text>;
      if (loading) return <Text>Loading...</Text>;
     if (error) return <Text>Error :{error}</Text>;
     // return data.messages.map(({  id, name, type, text, createdAt, createdBy }) => (

@@ -89,7 +89,7 @@ function ImageUploader(){
       setEnteredNameText(null);
       setEnteredTypeText(null);
       setImage(null);
-      setFileName(null)
+      setFileName(null);
     }
     async function pickImage () {
         const result = await ImagePicker.launchImageLibraryAsync({

@@ -1,10 +1,25 @@
 import { StyleSheet, Text, View, TextInput, Button, ScrollView, FlatList } from 'react-native';
 import {useState} from 'react';
-import { ApolloClient, InMemoryCache, ApolloProvider, gql } from '@apollo/client';
+import { ApolloClient, InMemoryCache, ApolloProvider, gql, useQuery } from '@apollo/client';
 import ImageUploader from './components/ImageUploader';
 import ListImages from './components/ListImages';
 import getEnvVars from './environment';
 const { apolloUrl } = getEnvVars();
+
+const GET_MESSAGES = gql`
+query  messages {
+  messages {
+    id
+    name
+    type
+    text
+    fileName
+    address
+    createdAt
+    createdBy
+  }
+}
+`;
 
 console.log(apolloUrl)
 export default function App() {
@@ -12,17 +27,17 @@ export default function App() {
     uri: apolloUrl ,
     cache: new InMemoryCache(),
   });
-  const [users, setUsers] = useState([]);
+  const [images, SetImages] = useState([]);
 
-  // function addUserHandler(enteredUserText) {
-  //   setUsers(currentUsers => [...currentUsers,
-  //      {
-  //       text : enteredUserText,
-  //       id: Math.random().toString()
-  //     }]);
-  // };
+    // SetImages(currentImages => [...currentImages,
+    //   data.messages.map(({  id, name, type, text, filename, createdAt, createdBy }) => (
+    //     {
+    //     text : enteredUserText,
+    //     id: Math.random().toString()
+    //     }))
+    //   ])
 
-
+ 
 
   return (
     <ApolloProvider client={client}>
