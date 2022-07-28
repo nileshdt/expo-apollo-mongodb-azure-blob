@@ -27,6 +27,7 @@ You should see the following:\n
 MongoDB Connected
 Server running at http://localhost:5000/
 
+Start the expo app, Make sure Andriod emultor is running.
 ```sh
 cd expo-apollo-mongodb-azure-blob
 npm install
