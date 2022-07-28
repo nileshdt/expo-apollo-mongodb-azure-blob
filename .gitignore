@@ -15,6 +15,7 @@ environment.js
 /api/.env
 /apollo/.env
 __azurite_db_table__.json
-
+**/.env/
+**/environment.js
 # macOS
 .DS_Store
