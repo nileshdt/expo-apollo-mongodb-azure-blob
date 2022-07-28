@@ -9,5 +9,12 @@ npm-debug.*
 *.mobileprovision
 *.orig.*
 web-build/
+react1/
+blob/
+environment.js
+/api/.env
+/apollo/.env
+__azurite_db_table__.json
+
 # macOS
 .DS_Store
