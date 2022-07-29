@@ -39,7 +39,7 @@ function ListImages() {
       <View style={{ flex: 1}}>
         <FlatList 
         data={data.messages}
-        numColumns= {1}
+        numColumns= {3}
         keyExtractor={(_, index) => index}
         initialNumToRender={data.messages.length}
         renderItem={({ item, _ }) => {

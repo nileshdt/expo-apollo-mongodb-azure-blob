@@ -7,7 +7,7 @@ git clone https://github.com/nileshdt/expo-apollo-mongodb-azure-blob.git
 
 cd expo-apollo-mongodb-azure-blob/api
 ```
-Then update the file .env with azure storage values
+Then create and update the file .env with azure storage values
 ```sh
 AZURE_STORAGE_CONNECTION_STRING=
 AZURE_ACCOUNT=
@@ -26,7 +26,7 @@ Open a new terminal
 ```sh
 cd expo-apollo-mongodb-azure-blob/apollo
 ```
-Then update the file .env with the mongodb values
+Then create and update the file .env with the mongodb values
 ```sh
 MONGO_USER=
 MONGO_PASSWORD=
